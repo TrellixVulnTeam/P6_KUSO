@@ -4,22 +4,7 @@ const jwt = require('jsonwebtoken');
 const passwordValidator = require('password-validator')
 const User = require('../models/User');
 
-var schema = new passwordValidator();
 
-schema
-.is()
-.min(6) // Minimum 8 caractères
-.is()
-.max(20) // Maximum 20 caractères
-.has()
-.uppercase(1) // Le mot de passe doit avoir des majuscules
-.has()
-.lowercase(1) // Le mot de passe doit avoir des minuscules
-.has()
-.digits(2) // Le mot de passe doit avoir des chiffres
-.has()
-.not()
-.spaces(); // Le mot de passe ne doit pas avoir d'espace
 
 //fonction s'inscrire
 exports.signup = (req, res, next) => {
