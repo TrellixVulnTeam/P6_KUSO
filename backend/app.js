@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const helmet = require('helmet');
 const dotenv = require('dotenv').config();
+const xss = require('xss-clean');
 
 const Sauce = require('./models/Sauce');
 
@@ -17,6 +18,8 @@ mongoose.connect(process.env.MONGO_URL,
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 const app = express();
+
+app.use(xss());
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
